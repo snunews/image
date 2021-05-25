@@ -7,7 +7,6 @@
 <div id="map" style="width:100%;height:100%;"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eaacd85667b547236237eafb8ba8244a"></script>
 <script>
-    
     // 지도 만들기
     var mapContainer = document.getElementById('map'), // 지도 표시할 영역
       mapOption = {
@@ -32,14 +31,12 @@
         imageOption = {offset: new kakao.maps.Point(27, 69)};
     
     // 장소리스트
-    var array =[
+    var place =[
         {
-            title:'85동',
             latlng: new kakao.maps.LatLng(37.46736367253729, 126.95352932906027),
             number: seven
         },
         {
-            title: '체육관',
             latlng: new kakao.maps.LatLng(37.46746585818763, 126.95238134365215),
             number: seven
         }
@@ -47,19 +44,22 @@
     
     // 마커만드는 함수
     function displayMarker(data) {
-        var MarkerImage = new kakao.maps.MarkerImage(data.number, imageSize, imageOption),
+        var imageSrc = data.number,
+            imageSize = new kakao.maps.Size(64, 69),
+            imageOption = {offset: new kakao.maps.Point(27, 69)};
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+            markerPosition = data.latlng,
             marker = new kakao.maps.Marker({
                 map: map,
-                position: data.latlng,
-                image: MarkerImage
+                position: markerPosition,
+                image: markerImage
             });
         marker.setMap(map);
     }
-    
+  
     // 반복걸기
-    for(var i in array){
-        var data = i;
-        displayMarker(data);
+    for(var i in place){
+        displayMarker(i);
     }
     
   // 원 만들기

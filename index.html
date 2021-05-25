@@ -17,9 +17,49 @@
     },
       map = new kakao.maps.Map(mapContainer, mapOption),
       zoomControl = new kakao.maps.ZoomControl(); // 지도 줌 컨트롤하기
-    
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT) // 지도 생성하기
-  
+  // 마커 이미지
+    var one ='./1.png',
+        two ='./2.png',
+        three ='./3.png',
+        four ='./4.png',
+        five ='./5.png',
+        six ='./6.png',
+        seven ='./7.png';
+    
+    //마커커스텀
+    var imageSize = new kakao.maps.Size(60, 60),
+        imageOption = {offset: new kakao.maps.Point(27, 69)};
+    
+    function displayMarker(data) {
+        var MarkerImage = new kakao.maps.MarkerImage(data.number, imageSize, imageOption),
+            marker = new kakao.maps.Marker({map: map,
+                position: data.latlng,
+                image: MarkerImage
+            });
+    }
+    
+    
+    
+    #장소리스트
+    var places =[
+        {
+            title:'85동',
+            latlng: new kakao.maps.LatLng(37.46736367253729, 126.95352932906027),
+            number: seven
+        },
+        {
+            title: '체육관',
+            latlng: new kakao.maps.LatLng(37.46746585818763, 126.95238134365215),
+            number: 7
+        }
+    ];
+    
+    #반복걸기
+    for(let i=0; i < places.length; i++){
+        var data = places[i];
+        displayMarker(data);}
+    
   // 원 만들기
   var circle = new kakao.maps.Circle({
     center : new kakao.maps.LatLng(37.466478057716685, 126.95223114001395),  // 원의 중심좌표 입니다 
@@ -29,11 +69,10 @@
     strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
     strokeStyle: 'dashed', // 선의 스타일 입니다
     fillColor: '#CFE7FF', // 채우기 색깔입니다
-    fillOpacity: 0.7  // 채우기 불투명도 입니다   
+    fillOpacity: 0.7  // 채우기 불투명도 입니다
   }); 
   // 지도에 원을 표시합니다 
   circle.setMap(map); 
-  
 
 </script>
 </body>

@@ -11,13 +11,14 @@
 <script>
   // 지도 만들기
   var mapContainer = document.getElementById('map'), // 지도 표시할 영역
-    mapOption = { 
-        center: new kakao.maps.LatLng(37.459494, 126.952222), // 지도의 중심좌표_google map에서 오른쪽 마우스 클릭하면 나와요
-        level: 5 // 지도의 확대 레벨
-    },
-      map = new kakao.maps.Map(mapContainer, mapOption),
-      zoomControl = new kakao.maps.ZoomControl(); // 지도 줌 컨트롤하기
-    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT) // 지도 생성하기
+      mapOption = {
+          center: new kakao.maps.LatLng(37.459494, 126.952222), // 지도의 중심좌표_google map에서 오른쪽 마우스 클릭하면 나와요
+          level: 5 // 지도의 확대 레벨
+      };
+    var map = new kakao.maps.Map(mapContainer, mapOption),
+        zoomControl = new kakao.maps.ZoomControl(); // 지도 줌 컨트롤하기
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT); // 지도 생성하기
+    
   // 마커 이미지
     var one ='./1.png',
         two ='./2.png',
@@ -31,17 +32,7 @@
     var imageSize = new kakao.maps.Size(60, 60),
         imageOption = {offset: new kakao.maps.Point(27, 69)};
     
-    function displayMarker(data) {
-        var MarkerImage = new kakao.maps.MarkerImage(data.number, imageSize, imageOption),
-            marker = new kakao.maps.Marker({map: map,
-                position: data.latlng,
-                image: MarkerImage
-            });
-    }
-    
-    
-    
-    #장소리스트
+    // 장소리스트
     var places =[
         {
             title:'85동',
@@ -55,10 +46,22 @@
         }
     ];
     
-    #반복걸기
-    for(let i=0; i < places.length; i++){
-        var data = places[i];
-        displayMarker(data);}
+    // 마커만드는 함수
+    function displayMarker(data) {
+        var MarkerImage = new kakao.maps.MarkerImage(data.number, imageSize, imageOption),
+            marker = new kakao.maps.Marker({
+                map: map,
+                position: data.latlng,
+                image: MarkerImage
+            });
+        marker.setMap(map);
+    }
+    
+    // 반복걸기
+    for(var i in places){
+        var data = i;
+        displayMarker(data);
+    }
     
   // 원 만들기
   var circle = new kakao.maps.Circle({

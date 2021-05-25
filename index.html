@@ -16,8 +16,11 @@ $ git push origin
     mapOption = { 
         center: new kakao.maps.LatLng(37.459494, 126.952222), // 지도의 중심좌표_google map에서 오른쪽 마우스 클릭하면 나와요
         level: 5 // 지도의 확대 레벨
-    };  
-  var map = new kakao.maps.Map(mapContainer, mapOption); 
+    },
+      map = new kakao.maps.Map(mapContainer, mapOption),
+      zoomControl = new kakao.maps.ZoomControl(); // 지도 줌 컨트롤하기
+    
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT) // 지도 생성하기
   
   // 원 만들기
   var circle = new kakao.maps.Circle({

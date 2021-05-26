@@ -20,16 +20,16 @@
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
     
     // 섹션 1부터 7까지 리스트
-    const section = [
+    var section = [
         {
-            latlng : new kakao.maps.LatLng(37.466903835382205, 126.95233842837283),
-            radius : 200,
-            color : '#e7305b'
+            latlng: new kakao.maps.LatLng(37.466903835382205, 126.95233842837283),
+            radius: 200,
+            color: '#e7305b'
         },
         {
-            latlng : new kakao.maps.LatLng(37.463031989183406, 126.95292629971475),
-            radius : 300,
-            color : '#fe5d26'
+            latlng: new kakao.maps.LatLng(37.463031989183406, 126.95292629971475),
+            radius: 300,
+            color: '#fe5d26'
         }
     ];
     
@@ -47,7 +47,10 @@
         });
     }
     
-    section.foreach(displayCircle(e){console.log(e)})
+    // 원 반복문 걸어주기
+    for (var i = 0; i < section.length; i ++) {
+        displayMarker(section[i]);
+    }
         
     // 장소리스트
     var places =[
@@ -75,7 +78,7 @@
     
     // 마커 반복문 걸어주기
     for (var i = 0; i < places.length; i ++) {
-        displayMarker(place[i]);
+        displayMarker(places[i]);
     }
     
 </script>

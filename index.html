@@ -36,6 +36,7 @@
     // 원 그리는 함수
     function displayCircle(data){
         var circle = new kakao.maps.Circle({
+            map: map,
             center : data[i].latlng, // 중심좌표
             radius : data[i].radius, // 원의 반지름
             strokeWeight : 4,

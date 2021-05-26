@@ -23,14 +23,14 @@
     var section;
     section = [
         {
-            "latlng": new kakao.maps.LatLng(37.466903835382205, 126.95233842837283),
-            "radius": 200,
-            "color": '#e7305b'
+            latlng: new kakao.maps.LatLng(37.466903835382205, 126.95233842837283),
+            radius: 200,
+            color: '#e7305b'
         },
         {
-            "latlng": new kakao.maps.LatLng(37.463031989183406, 126.95292629971475),
-            "radius": 300,
-            "color": '#fe5d26'
+            latlng: new kakao.maps.LatLng(37.463031989183406, 126.95292629971475),
+            radius: 300,
+            color: '#fe5d26'
         }
     ]; 
     
@@ -58,7 +58,7 @@
     places = [
         {
             latlng: new kakao.maps.LatLng(37.46736367253729, 126.95352932906027),
-            number: './1.png'
+            number: './7.png'
         },
         {
             latlng: new kakao.maps.LatLng(37.46746585818763, 126.95238134365215),
@@ -67,11 +67,11 @@
     ];
 
     // 마커 만드는 함수
-    function displayMarker(item){
-        var imageSize = new kakao.maps.Size(64, 69),
-            imageSrc = item.number;
+    function displayMarker(b){
+        var imageSize = new kakao.maps.Size(10, 10),
+            imageSrc = b.number;
         var marker = new kakao.maps.Marker({
-            position: item.latlng,
+            position: b.latlng,
             image: new kakao.maps.MarkerImage(imageSrc, imageSize)});
         marker.setMap(map)
     }

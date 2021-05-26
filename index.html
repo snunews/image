@@ -63,12 +63,32 @@
         {
             latlng: new kakao.maps.LatLng(37.46746585818763, 126.95238134365215),
             number: './7.png'
+        },
+        {
+            latlng : new kakao.maps.LatLng(37.46656707304553, 126.95221255883665),
+            number: './7.png'
+        },
+        {
+            latlng : new kakao.maps.LatLng(37.46350314298509, 126.95315397603645),
+            number: './6.png'
+        },
+        {
+            latlng : new kakao.maps.LatLng(37.46354785153285, 126.95265508516769),
+            number: './6.png'
+        },
+        {
+            latlng : new kakao.maps.LatLng(37.462666449512845, 126.95336855275391),
+            number: './6.png'
+        },
+        {
+            latlng : new kakao.maps.LatLng(37.46243438783375, 126.95287234409413),
+            number: './6.png'
         }
     ];
 
     // 마커 만드는 함수
     function displayMarker(b){
-        var imageSize = new kakao.maps.Size(10, 10),
+        var imageSize = new kakao.maps.Size(30, 30),
             imageSrc = b.number;
         var marker = new kakao.maps.Marker({
             position: b.latlng,

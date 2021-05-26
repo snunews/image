@@ -31,7 +31,7 @@
         imageOption = {offset: new kakao.maps.Point(27, 69)};
     
     // 장소리스트
-    var place =[
+    var places =[
         {
             latlng: new kakao.maps.LatLng(37.46736367253729, 126.95352932906027),
             number: seven
@@ -45,21 +45,15 @@
     // 마커 옵션
     var imageSize = new kakao.maps.Size(64, 69),
         imageOption = {offset: new kakao.maps.Point(27, 69)};
-    
-    // 마커만드는 함수
-    function displayMarker(data) {
-        var markerImage = new kakao.maps.MarkerImage(data.number, imageSize, imageOption),
+      
+    // 반복걸기
+    for (var i = 0; i < places.length; i ++) {
+        var markerImage = new kakao.maps.MarkerImage(places[i].number, imageSize, imageOption),
             marker = new kakao.maps.Marker({
                 map: map,
-                position: data.latlng,
+                position: places[i].latlng,
                 image: markerImage
             });
-        marker.setMap(map);
-    }
-  
-    // 반복걸기
-    for(var i in place){
-        displayMarker(i);
     }
     
     // 원 만드는 함수

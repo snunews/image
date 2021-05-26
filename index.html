@@ -87,12 +87,21 @@
         {
             latlng : new kakao.maps.LatLng(37.463031989183406, 126.95292629971475),
             radius : 300,
-            color : '#fe5d2'
+            color : '#fe5d26'
         }
     ];
     
-    for (i in section){
-        circle[i];
+    for (var i = 0; i < section.length; i ++) {
+        var draw = new kakao.maps.Circle({
+            center : section[i].latlng, // 중심좌표
+            radius : section[i].radius, // 원의 반지름
+            strokeWeight : 4,
+            strokeColor: section[i].color, // 선의 색깔입니다
+            strokeOpacity: 0, // 선의 불투명도 : 0에 가까울수록 투명
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: section[i].color, // 채우기 색깔입니다
+            fillOpacity: 0.2  // 채우기 불투명도 입니다
+        });
     }
     
 </script>

@@ -18,41 +18,7 @@
     // 지도 줌 컨트롤
     var zoomControl = new kakao.maps.ZoomControl(); // 지도 줌 컨트롤하기
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-    // 섹션 1부터 7까지 리스트
-    var section;
-    section = [
-        {
-            latlng: new kakao.maps.LatLng(37.466903835382205, 126.95233842837283),
-            radius: 200,
-            color: '#e7305b'
-        },
-        {
-            latlng: new kakao.maps.LatLng(37.463031989183406, 126.95292629971475),
-            radius: 300,
-            color: '#fe5d26'
-        }
-    ]; 
     
-    // 원 그리는 함수
-    function displayCircle(item){
-        var circle = new kakao.maps.Circle({
-            center : item.latlng, // 중심좌표
-            radius : item.radius, // 원의 반지름
-            strokeWeight : 4,
-            strokeColor: item.color, // 선의 색깔
-            strokeOpacity: 0, // 선의 불투명도 : 0에 가까울수록 투명
-            strokeStyle: 'solid', // 선 스타일
-            fillColor: item.color, // 채우기 색깔
-            fillOpacity: 0.2  // 채우기 불투명도
-        });
-    }
-
-    // 원 반복문 걸어주기
-    section.forEach(item => {
-        displayMarker(item);
-    });
-
     // 장소리스트
     var places;
     places = [

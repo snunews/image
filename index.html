@@ -8,70 +8,18 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eaacd85667b547236237eafb8ba8244a"></script>
 <script>
     // 지도 만들기
-    var mapContainer = document.getElementById('map'), // 지도 표시할 영역
-      mapOption = {
-          center: new kakao.maps.LatLng(37.459494, 126.952222), // 지도의 중심좌표_google map에서 오른쪽 마우스 클릭하면 나와요
-          level: 5 // 지도의 확대 레벨
-      };
-    var map = new kakao.maps.Map(mapContainer, mapOption),
-        zoomControl = new kakao.maps.ZoomControl(); // 지도 줌 컨트롤하기
-    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT); // 지도 생성하기
-    
-    // 마커 이미지
-    var one ='./1.png',
-        two ='./2.png',
-        three ='./3.png',
-        four ='./4.png',
-        five ='./5.png',
-        six = './6.png',
-        seven = './7.png';
-    
-    //마커커스텀
-    var imageSize = new kakao.maps.Size(70, 70),
-        imageOption = {offset: new kakao.maps.Point(27, 69)};
-    
-    // 장소리스트
-    var places =[
-        {
-            latlng: new kakao.maps.LatLng(37.46736367253729, 126.95352932906027),
-            number: seven
+    var mapContainer = document.getElementById('map'),// 지도 표시할 영역
+        mapOption = {
+        center: new kakao.maps.LatLng(37.459494, 126.952222), // 지도의 중심좌표
+        level: 5 // 지도의 확대 레벨
         },
-        {
-            latlng: new kakao.maps.LatLng(37.46746585818763, 126.95238134365215),
-            number: seven
-        }
-    ];
+        map = new kakao.maps.Map(mapContainer, mapOption);
     
-    // 마커 옵션
-    var imageSize = new kakao.maps.Size(64, 69),
-        imageOption = {offset: new kakao.maps.Point(27, 69)};
-      
-    // 반복걸기
-    for (var i = 0; i < places.length; i ++) {
-        var markerImage = new kakao.maps.MarkerImage(places[i].number, imageSize, imageOption),
-            marker = new kakao.maps.Marker({
-                map: map,
-                position: places[i].latlng,
-                image: markerImage
-            });
-    }
+    // 지도 줌 컨트롤
+    var zoomControl = new kakao.maps.ZoomControl(); // 지도 줌 컨트롤하기
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
     
-    // 원 만드는 함수
-    function circle(section){
-        var draw = new kakao.maps.Circle({
-            center : section.latlng, // 중심좌표
-            radius : section.radius, // 원의 반지름
-            strokeWeight : 4,
-            strokeColor: section.color, // 선의 색깔입니다
-            strokeOpacity: 0, // 선의 불투명도 : 0에 가까울수록 투명
-            strokeStyle: 'solid', // 선의 스타일 입니다
-            fillColor: section.color, // 채우기 색깔입니다
-            fillOpacity: 0.2  // 채우기 불투명도 입니다
-        });
-        return draw.setMap(map);
-    }
-    
-    // 섹션 리스트
+    // 섹션 1부터 7까지 리스트
     var section = [
         {
             latlng : new kakao.maps.LatLng(37.466903835382205, 126.95233842837283),
@@ -85,19 +33,54 @@
         }
     ];
     
-    for (var i = 0; i < section.length; i ++) {
-        var draw = new kakao.maps.Circle({
-            center : section[i].latlng, // 중심좌표
-            radius : section[i].radius, // 원의 반지름
+    // 원 그리는 함수
+    function draw(data){
+        var circle = = new kakao.maps.Circle({
+            center : data[i].latlng, // 중심좌표
+            radius : data[i].radius, // 원의 반지름
             strokeWeight : 4,
-            strokeColor: section[i].color, // 선의 색깔입니다
+            strokeColor: data[i].color, // 선의 색깔
             strokeOpacity: 0, // 선의 불투명도 : 0에 가까울수록 투명
-            strokeStyle: 'solid', // 선의 스타일 입니다
-            fillColor: section[i].color, // 채우기 색깔입니다
-            fillOpacity: 0.2  // 채우기 불투명도 입니다
+            strokeStyle: 'solid', // 선 스타일
+            fillColor: data[i].color, // 채우기 색깔
+            fillOpacity: 0.2  // 채우기 불투명도
         });
     }
     
+    // 반복문 걸어주기
+    for (var i = 0; i < section.length; i ++) {
+        draw(section[i])
+    }
+    
+    //마커커스텀
+    var imageSize = new kakao.maps.Size(70, 70),
+        imageOption = {offset: new kakao.maps.Point(27, 69)};
+    
+    // 장소리스트
+    var places =[
+        {
+            latlng: new kakao.maps.LatLng(37.46736367253729, 126.95352932906027),
+            number: './1.png'
+        },
+        {
+            latlng: new kakao.maps.LatLng(37.46746585818763, 126.95238134365215),
+            number: './7.png'
+        }
+    ];
+    
+    // 마커 옵션
+    var imageSize = new kakao.maps.Size(64, 69),
+        imageOption = {offset: new kakao.maps.Point(27, 69)};
+      
+    // 반복걸기
+    for (var i = 0; i < places.length; i ++) {
+        var markerImage = new kakao.maps.MarkerImage(places[i].number, imageSize),
+            marker = new kakao.maps.Marker({
+                map: map,
+                position: places[i].latlng,
+                image: markerImage
+            });
+    }
 </script>
 </body>
 </html>

@@ -62,20 +62,39 @@
         displayMarker(i);
     }
     
-  // 원 만들기
-  var circle = new kakao.maps.Circle({
-    center : new kakao.maps.LatLng(37.4669464130154, 126.95246717440348),  // 원의 중심좌표 입니다 
-    radius: 200, // 미터 단위의 원의 반지름입니다 
-    strokeWeight: 4, // 선의 두께입니다 
-    strokeColor: '#e7305b', // 선의 색깔입니다
-    strokeOpacity: 0, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-    strokeStyle: 'solid', // 선의 스타일 입니다
-    fillColor: '#e7305b', // 채우기 색깔입니다
-    fillOpacity: 0.3  // 채우기 불투명도 입니다
-  }); 
-  // 지도에 원을 표시합니다 
-  circle.setMap(map); 
-
+    // 원 만드는 함수
+    function circle(section){
+        var draw = new kakao.maps.Circle({
+            center : section.latlng, // 중심좌표
+            radius : section.radius, // 원의 반지름
+            strokeWeight : 4,
+            strokeColor: section.color, // 선의 색깔입니다
+            strokeOpacity: 0, // 선의 불투명도 : 0에 가까울수록 투명
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: section.color, // 채우기 색깔입니다
+            fillOpacity: 0.2  // 채우기 불투명도 입니다
+        });
+        return draw.setMap(map);
+    }
+    
+    // 섹션 리스트
+    var section = [
+        {
+            latlng : new kakao.maps.LatLng(37.466903835382205, 126.95233842837283),
+            radius : 200,
+            color : #e7305b
+        },
+        {
+            latlng : new kakao.maps.LatLng(37.463031989183406, 126.95292629971475),
+            radius : 300,
+            color : #fe5d2
+        }
+    ];
+    
+    for (i in section){
+        circle[i];
+    }
+    
 </script>
 </body>
 </html>
